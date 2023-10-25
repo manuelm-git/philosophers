@@ -2,12 +2,12 @@
 #include <limits.h>
 #include "philo.h"
 
-int ft_putstr(char *str)
+int ft_putstr_toerr(char *str)
 {
     int i = 0;
     while(str[i] != '\0')
     {
-        write(1,&str[i],1);
+        write(2,&str[i],1);
         i++;
     }
     return(0);
@@ -33,10 +33,18 @@ int ft_atoi(char *str)
             i++;
         }
         else
-        exit(ft_putstr("Error : Invalid input\n"));
+        return(ft_exit_error("Invalid input"));
     }
     if (num > 0 && num < INT_MAX)
         return (num * pn);
     else
-        exit(ft_putstr("Error : Invalid input\n"));
+        return (ft_exit_error("Invalid input"));
+}
+
+int ft_exit_error(char *msg)
+{
+   ft_putstr_toerr("Error:");
+   ft_putstr_toerr(msg);
+   ft_putstr_toerr("\n");
+    return(0);
 }
