@@ -1,20 +1,19 @@
 #include "philo.h"
-int initforks(t_fork **fork,int nforks)
+
+t_fork *initforks(t_philodata *philodata)
 {
     int i;
-    pthread_mutex_t *mutex;
-   
+    t_fork *forks;
+
     i = 0;
-    fork = malloc(sizeof(int) * nforks);
-    if(!fork)
-        ft_exit_error("Fork error");
-    mutex = malloc(sizeof(pthread_mutex_t) * nforks);
-    if(!mutex)
-        ft_exit_error("Mutex error");
-    while (i < nforks)
+    forks = malloc(sizeof(t_fork) * philodata->Nphil);
+    if(!forks)
+        ft_exit_error("Error: failed to allocate forks");
+    while (i < philodata->Nphil)
     {
-        fork[i]->taken = 0;
-        pthread_mutex_init(&fork[i]->mutex,NULL);
+        forks[i].istaken = 0;
+        if(pthread_mutex_init(&forks[i].mutex,NULL))
+            ft_exit_error("Error: failed to allocate forks");
         i++;
     }
     return (0);
@@ -23,24 +22,16 @@ int initforks(t_fork **fork,int nforks)
 //int initmutex(t_philo **philodata)
 
 
-int init_philo(t_philo **philo, t_philofork **forks)
+void init_philos(t_philo *philo)
 {
     int i;
 
     i = 0;
-
-    philo = malloc(sizeof(t_philo) * (*philo)->Nphil);
-    while (i < (*philo)->Nphil)
+    while(i < philo->philodata->Nphil)
     {
-        philo[i]->checkdeath = 0;
-        philo[i]->id = i;
-        philo[i]->eatamount = 0;
-        philo[i]->right_fork = forks[i];
-        if(i == 0)
-            philo[i]->left_fork = forks[(*philo)->Nphil - 1];
-        else
-            philo[i]->left_fork = forks[i - 1];
+        philo[i].id = i + 1;
+        philo[i].mealseaten = 0;
+        philo[i].lasttimeeaten = get_time();
         i++;
     }
-    return (0); 
 }

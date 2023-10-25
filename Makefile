@@ -6,7 +6,7 @@
 #    By: manumart <manumart@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/12 15:38:55 by manumart          #+#    #+#              #
-#    Updated: 2023/10/11 20:10:17 by manumart         ###   ########.fr        #
+#    Updated: 2023/10/25 20:32:22 by manumart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,13 @@
 NAME = philo
 
 SRCS_NAME =	main.c \
-			utils.c
+			utils.c	\
+			init.c	\
+			timeNclean.c
 			
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra  -g #-fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra  -g -fsanitize=thread
 
 RM = rm -rf
 
