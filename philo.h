@@ -6,7 +6,7 @@
 /*   By: manumart <manumart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:00:43 by manumart          #+#    #+#             */
-/*   Updated: 2023/10/25 20:32:17 by manumart         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:39:24 by manumart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int ft_putstr_toerr(char *str);
 int ft_exit_error(char *msg);
 t_fork *initforks(t_philodata *philodata);
 unsigned int get_time(void);
-void init_philos(t_philo *philo);
+void init_philos(t_philo *philo,t_philodata *philodata,t_fork *fork);
 int clean_everything(t_philo *philos,t_fork *forks);
 #endif

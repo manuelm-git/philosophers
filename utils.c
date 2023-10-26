@@ -43,8 +43,8 @@ int ft_atoi(char *str)
 
 int ft_exit_error(char *msg)
 {
-   ft_putstr_toerr("Error:");
-   ft_putstr_toerr(msg);
-   ft_putstr_toerr("\n");
+    ft_putstr_toerr("Error:");
+    ft_putstr_toerr(msg);
+    ft_putstr_toerr("\n");
     return(0);
 }

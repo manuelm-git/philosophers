@@ -6,7 +6,7 @@
 /*   By: manumart <manumart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:52:04 by manumart          #+#    #+#             */
-/*   Updated: 2023/10/25 20:14:02 by manumart         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:12:55 by manumart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ int checkargs(int argc,char **argv)
     }
     return (0);
 }
+void	all_prints(t_philo *philo)
+{
+	printf(" [num philo] %d philos\n", philo->philodata->Nphil);
+	printf(" [time to die] %ld ms\n", philo->philodata->timetodie);
+	printf(" [time to eat] %d ms\n", philo->philodata->timesmusteat);
+	printf(" [time to sleep] %d ms\n", philo->philodata->timetoeat);
+	printf(" [num times to eat] %d meals\n\n", philo->philodata->timetosleep);
+
+}
 int main(int argc,char **argv)
 {
     t_philo *philos;
@@ -50,6 +59,6 @@ int main(int argc,char **argv)
     philos = malloc(sizeof(t_philo) * philodata()->Nphil);
     if(!philos)
         clean_everything(philos,forks);
-    init_philos(philos);
+    init_philos(philos,philodata(),forks);
     
 }

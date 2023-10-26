@@ -22,13 +22,15 @@ t_fork *initforks(t_philodata *philodata)
 //int initmutex(t_philo **philodata)
 
 
-void init_philos(t_philo *philo)
+void init_philos(t_philo *philo,t_philodata *philodata,t_fork *forks)
 {
     int i;
 
     i = 0;
-    while(i < philo->philodata->Nphil)
+    while(i < philodata->Nphil)
     {
+        philo[i].forks = forks;
+        philo[i].philodata = philodata;
         philo[i].id = i + 1;
         philo[i].mealseaten = 0;
         philo[i].lasttimeeaten = get_time();
