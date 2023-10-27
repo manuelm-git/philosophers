@@ -6,14 +6,19 @@
 /*   By: manumart <manumart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:52:04 by manumart          #+#    #+#             */
-/*   Updated: 2023/10/26 18:12:55 by manumart         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:22:43 by manumart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
+t_philo *philo(void)
+{
+    static t_philo philo;
 
+    return(&philo);
+}
 t_philodata *philodata(void)
 {
     static t_philodata data;
@@ -37,6 +42,8 @@ int checkargs(int argc,char **argv)
     }
     return (0);
 }
+
+//remove
 void	all_prints(t_philo *philo)
 {
 	printf(" [num philo] %d philos\n", philo->philodata->Nphil);
@@ -49,16 +56,12 @@ void	all_prints(t_philo *philo)
 int main(int argc,char **argv)
 {
     t_philo *philos;
-    t_fork  *forks;
     
     if(checkargs(argc,argv))
         return(0);
-    forks = initforks(philodata());
-    if(!forks)
-        clean_everything(NULL,forks);
     philos = malloc(sizeof(t_philo) * philodata()->Nphil);
     if(!philos)
-        clean_everything(philos,forks);
-    init_philos(philos,philodata(),forks);
+        clean_everything(philos);
+    init_philos(philos,philodata());
     
 }

@@ -6,7 +6,7 @@
 /*   By: manumart <manumart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 18:31:42 by manumart          #+#    #+#             */
-/*   Updated: 2023/10/26 16:29:17 by manumart         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:22:15 by manumart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ unsigned int get_time(void)
     return((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-int	clean_everything(t_philo *philos, t_fork *forks)
+int	clean_everything(t_philo *philos)
 {
 	int	i;
 
 	i = 0;
-	if (forks)
+	if (philo()->forks)
 	{
 		while (i < philodata()->Nphil)
-			pthread_mutex_destroy(&forks[i++].mutex);
-		free(forks);
+			pthread_mutex_destroy(&philo()[i++].forks->mutex);
+		free(philo()->forks);
 	}
 	i = 0;
 	if (philos)
