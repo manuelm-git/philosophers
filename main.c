@@ -6,7 +6,7 @@
 /*   By: manumart <manumart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:52:04 by manumart          #+#    #+#             */
-/*   Updated: 2023/10/27 15:22:43 by manumart         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:43:57 by manumart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,31 @@ int checkargs(int argc,char **argv)
 }
 
 //remove
-void	all_prints(t_philo *philo)
+void	all_prints()
 {
-	printf(" [num philo] %d philos\n", philo->philodata->Nphil);
-	printf(" [time to die] %ld ms\n", philo->philodata->timetodie);
-	printf(" [time to eat] %d ms\n", philo->philodata->timesmusteat);
-	printf(" [time to sleep] %d ms\n", philo->philodata->timetoeat);
-	printf(" [num times to eat] %d meals\n\n", philo->philodata->timetosleep);
+    if(philodata()->Nphil)
+	    printf(" [num philo] %d philos\n", philodata()->Nphil);
+	if(philodata()->timetodie)
+    printf(" [time to die] %ld ms\n", philodata()->timetodie);
+	if(philodata()->timesmusteat)
+        printf(" [time to eat] %d ms\n", philodata()->timesmusteat);
+	if(philodata()->timetodie)
+        printf(" [time to sleep] %d ms\n", philodata()->timetoeat);
+	if(philodata()->timetosleep)
+        printf(" [num times to eat] %d meals\n\n", philodata()->timetosleep);
 
 }
 int main(int argc,char **argv)
 {
-    t_philo *philos;
-    
     if(checkargs(argc,argv))
         return(0);
-    philos = malloc(sizeof(t_philo) * philodata()->Nphil);
-    if(!philos)
-        clean_everything(philos);
-    init_philos(philos,philodata());
     
+    //    clean_everything(philos);
+    init_philos(philo(),philodata());
+    all_prints(philos);
 }
+
+
+//passa com limites?
+//passa com ++ ou -- com input?
+//e mais umas merdas

@@ -5,7 +5,7 @@ t_fork *initforks(t_philodata *philodata)
     int i;
 
     i = 0;
-    philo()->forks = malloc(sizeof(t_fork) * philodata->Nphil);
+    philo()->forks = malloc(sizeof(t_fork) * philo()->philodata->Nphil);
     if(!philo()->forks)
         ft_exit_error("Error: failed to allocate forks");
     while (i < philodata->Nphil)
@@ -18,24 +18,22 @@ t_fork *initforks(t_philodata *philodata)
     return (0);
 }
 
-int init_threads(t_philo *philo)
-{
-    int i;
+// int init_threads(t_philo *philo)
+// {
+//     int i;
 
-    i = 0;
-    while (i < philo->philodata->Nphil)
-    {
-        if(pthread_create(&philo->philo,NULL,&routine,))
-        i++;
-    }
-    i = 0;
-    while (i < philo->philodata->Nphil)
-    {
-        if(pthread_join())
-        i++;
-    }
-    
-}
+//     i = 0;
+//     while (i < philo->philodata->Nphil)
+//     {
+//         if(pthread_create(&philo->philo,NULL,&routine,&philo[i]))
+//             i++;
+//     }
+//     i = 0;
+//     while (i < philo->philodata->Nphil)
+//         if(pthread_join(&philo[i].philo ,NULL))
+//             i++;
+//     return (1);
+// }
 
 void init_philos(t_philo *philo,t_philodata *philodata)
 {
